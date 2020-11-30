@@ -8,10 +8,11 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import Photos from '@/components/Photos.vue';
 import TopBar from '@/components/TopBar.vue';
 import axiosConfig from '@/plugins/axiosConfig';
+import eventBus from '../EventBus'; //eventBus
 
 @Component({
   components: {
@@ -19,19 +20,20 @@ import axiosConfig from '@/plugins/axiosConfig';
     TopBar
   }
 })
-export default class Home extends Vue {
+export default class SearchView extends Vue {
   private isLoading = false;
+  private allPhotos: Array<object> = [];
   private $axios = axiosConfig;
-  allPhotos: Array<object> = [];
 
   mounted() {
-    this.getPhotos();
+    this.getSearchedPhotos();
   }
-  async getPhotos() {
+  async getSearchedPhotos() {
     try {
       this.isLoading = true;
+      eventBus.$emit('searchingPhoto', true);
       const response = await this.$axios.get(
-        `${process.env.VUE_APP_BASE_URL}/search/photos?query=african`
+        `${process.env.VUE_APP_BASE_URL}/search/photos?query=${this.$router.currentRoute.params.search}`
       );
 
       if (response.status === 200) {
@@ -40,11 +42,10 @@ export default class Home extends Vue {
     } catch (error) {
       console.log(error.response);
     }
+    eventBus.$emit('searchingPhoto', false);
     this.isLoading = false;
   }
 }
 </script>
 
-<style lang="scss" scoped>
-// TODO: media query for small SCREEN here
-</style>
+<style></style>

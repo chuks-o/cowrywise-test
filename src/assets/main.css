@@ -1,0 +1,26 @@
+:root {
+  --grey: #e2e6eb;
+  --white: #ffffff;
+  --h100: 100%;
+  --w100: 100%;
+  --w75: 75%;
+  --image-gradient: linear-gradient(
+    rgba(255, 255, 255, 0.1),
+    75%,
+    rgba(0, 0, 0, 0.9)
+  );
+}
+
+body {
+  background-color: var(--white);
+}
+
+.home {
+  margin: -4% 20% 5% 20%;
+}
+
+.container {
+  color: var(--blue);
+  background-color: var(--white);
+  padding: 15px;
+}

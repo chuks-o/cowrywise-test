@@ -8,7 +8,7 @@
         >vue-cli documentation</a
       >.
     </p>
-    <h3>Installed CLI Plugins</h3>
+    <h3>{{ myName }}</h3>
     <ul>
       <li>
         <a
@@ -108,6 +108,17 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+  @Prop({
+    required: false,
+    type: String,
+    default: "Developer",
+  })
+  private myName = "Okpala Chuks";
+  private bio: Array<object> = [
+    { age: 25, complexion: "dark", occupation: "Software Engineer" },
+    { age: 20, complexion: "fair", occupation: "Plumber" },
+    { age: 18, complexion: "dark", occupation: "Frontend Engineer" },
+  ];
 }
 </script>
 
