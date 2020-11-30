@@ -8,10 +8,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
-import Photos from '@/components/Photos.vue';
-import TopBar from '@/components/TopBar.vue';
-import axiosConfig from '@/plugins/axiosConfig';
+import { Vue, Component } from "vue-property-decorator";
+import Photos from "@/components/Photos.vue";
+import TopBar from "@/components/TopBar.vue";
+import axiosConfig from "@/plugins/axiosConfig";
 
 @Component({
   components: {
@@ -40,7 +40,9 @@ export default class Home extends Vue {
     } catch (error) {
       console.log(error.response);
     }
-    this.isLoading = false;
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
   }
 }
 </script>

@@ -8,11 +8,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Photos from '@/components/Photos.vue';
-import TopBar from '@/components/TopBar.vue';
-import axiosConfig from '@/plugins/axiosConfig';
-import eventBus from '../EventBus'; //eventBus
+import { Component, Vue } from "vue-property-decorator";
+import Photos from "@/components/Photos.vue";
+import TopBar from "@/components/TopBar.vue";
+import axiosConfig from "@/plugins/axiosConfig";
+import eventBus from "../EventBus"; //eventBus
 
 @Component({
   components: {
@@ -31,7 +31,7 @@ export default class SearchView extends Vue {
   async getSearchedPhotos() {
     try {
       this.isLoading = true;
-      eventBus.$emit('searchingPhoto', true);
+      eventBus.$emit("searchingPhoto", true);
       const response = await this.$axios.get(
         `${process.env.VUE_APP_BASE_URL}/search/photos?query=${this.$router.currentRoute.params.search}`
       );
@@ -42,8 +42,10 @@ export default class SearchView extends Vue {
     } catch (error) {
       console.log(error.response);
     }
-    eventBus.$emit('searchingPhoto', false);
-    this.isLoading = false;
+    setTimeout(() => {
+      eventBus.$emit("searchingPhoto", false);
+      this.isLoading = false;
+    }, 2000);
   }
 }
 </script>
