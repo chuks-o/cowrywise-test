@@ -23,34 +23,33 @@
 export default {
   props: {
     id: {
-      default: '',
+      default: "",
       required: false
     },
     photo: {
       type: Object,
-      required: false,
-      default: () => {}
+      required: false
     }
   },
   mounted() {
     // Get the modal
-    var modal = document.getElementById(`myModal-${this.id}`);
+    const modal = document.getElementById(`myModal-${this.id}`);
 
-    var btn = document.getElementById(`myBtn-${this.id}`);
+    const btn = document.getElementById(`myBtn-${this.id}`);
 
-    var span = modal.firstChild;
+    const span = modal.firstChild;
 
     btn.onclick = function() {
-      modal.style.display = 'block';
+      modal.style.display = "block";
     };
 
     span.onclick = function() {
-      modal.style.display = 'none';
+      modal.style.display = "none";
     };
 
     window.onclick = function(event) {
       if (event.target == modal) {
-        modal.style.display = 'none';
+        modal.style.display = "none";
       }
     };
   }
