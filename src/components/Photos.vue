@@ -2,7 +2,7 @@
   <div>
     <div class="photo_container" v-if="photos.length">
       <div class="photo_area" v-for="(photo, index) in photos" :key="index">
-        <div class="photo-area--body" :id="`myBtn-${index}`">
+        <div class="photo-area--body" :id="`myBtn-${photo.id}`" role="button">
           <img :src="photo.urls.regular" alt="photos" />
           <div class="photo_area--data">
             <p class="photo_area--dataname">
@@ -11,7 +11,7 @@
             <p class="photo_area--datalocation">{{ photo.user.location }}</p>
           </div>
         </div>
-        <photo-modal :photo="photo" :id="index" />
+        <photo-modal :photo="photo" :id="photo.id" :key="index" />
       </div>
     </div>
 
@@ -26,9 +26,9 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
-import PhotoPlaceholders from '@/components/PhotoPlaceholders.vue';
-import PhotoModal from '@/components/PhotoModal.vue';
+import { Vue, Component, Prop } from "vue-property-decorator";
+import PhotoPlaceholders from "@/components/PhotoPlaceholders.vue";
+import PhotoModal from "@/components/PhotoModal.vue";
 
 @Component({
   components: {
@@ -64,7 +64,7 @@ export default class Photos extends Vue {
         bottom: 0;
         left: 0;
         display: block;
-        content: '';
+        content: "";
       }
       img {
         width: 100%;

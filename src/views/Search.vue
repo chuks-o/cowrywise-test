@@ -45,7 +45,7 @@ export default class SearchView extends Vue {
     setTimeout(() => {
       eventBus.$emit("searchingPhoto", false);
       this.isLoading = false;
-    }, 2000);
+    }, 3000);
   }
 }
 </script>

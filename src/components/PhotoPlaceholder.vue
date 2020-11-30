@@ -18,7 +18,6 @@
           rx="3"
           ry="3"
           fill="#dddede"
-          style="margin-top:auto"
         ></rect>
         <rect
           id="svg_2"
@@ -36,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
 export default class PhotoPlaceholder extends Vue {

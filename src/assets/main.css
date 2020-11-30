@@ -19,8 +19,14 @@ body {
   margin: -4% 20% 5% 20%;
 }
 
-.container {
-  color: var(--blue);
-  background-color: var(--white);
-  padding: 15px;
+@media only screen and (max-width: 600px) {
+  .home {
+    margin: -5% 10% 5% 10%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+  .home {
+    margin: -5% 10% 5% 10%;
+  }
 }

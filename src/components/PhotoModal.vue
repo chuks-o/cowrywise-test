@@ -1,6 +1,6 @@
 <template>
   <!-- The Modal -->
-  <div :id="`myModal-${id}`" class="modal">
+  <div :id="`myModal-${id}`" class="modal hideModal">
     <!-- Modal content -->
     <span class="close">&times;</span>
     <div class="modal-content">
@@ -23,12 +23,11 @@
 export default {
   props: {
     id: {
-      default: "",
-      required: false
+      required: true
     },
     photo: {
       type: Object,
-      required: false
+      required: true
     }
   },
   mounted() {
@@ -36,40 +35,83 @@ export default {
     const modal = document.getElementById(`myModal-${this.id}`);
 
     const btn = document.getElementById(`myBtn-${this.id}`);
-
     const span = modal.firstChild;
 
     btn.onclick = function() {
-      modal.style.display = "block";
+      modal.classList.remove("hideModal");
+      modal.classList.add("showModal");
     };
 
     span.onclick = function() {
-      modal.style.display = "none";
+      modal.classList.remove("showModal");
+      modal.classList.add("hideModal");
     };
 
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
+    window.onclick = function() {
+      modal.classList.remove("showModal");
+      modal.classList.add("hideModal");
     };
   }
+  // methods: {
+  //   openModal() {
+  //   },
+  //   closeModal() {}
+  // }
 };
 </script>
 
 <style lang="scss">
 /* The Modal (background) */
 .modal {
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // flex-direction: column;
   position: fixed;
-  z-index: 3;
-  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 
+  &.hideModal {
+    opacity: 0;
+    z-index: -1;
+    // animation: hide 0.25s;
+    // transform: scale(0);
+  }
+  @keyframes hide {
+    from {
+      transform: scale(1);
+      opacity: 1;
+      z-index: 2;
+    }
+    to {
+      transform: scale(0);
+      opacity: 0;
+      z-index: -1;
+    }
+  }
+
+  &.showModal {
+    opacity: 1;
+    z-index: 2;
+    animation: show 0.2s;
+    transform: scale(1);
+  }
+  @keyframes show {
+    from {
+      transform: scale(0);
+      opacity: 0;
+      z-index: -1;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+      z-index: 2;
+    }
+  }
   /* Modal Content */
   .modal-content {
     background-color: #fefefe;
@@ -132,6 +174,19 @@ export default {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .modal {
+    column-count: 1;
+    .modal-content {
+      width: 85%;
+    }
+    .close {
+      right: 5%;
+      top: 4%;
+    }
   }
 }
 </style>

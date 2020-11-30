@@ -28,8 +28,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Placeholder from '@/components/PhotoPlaceholder.vue';
+import { Component, Vue } from "vue-property-decorator";
+import Placeholder from "@/components/PhotoPlaceholder.vue";
 
 @Component({
   components: {
@@ -43,5 +43,16 @@ export default class PhotoPlaceholders extends Vue {}
 .column {
   column-count: 3;
   column-gap: 3em;
+}
+@media only screen and (max-width: 600px) {
+  .column {
+    column-count: 1;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+  .column {
+    column-count: 2;
+  }
 }
 </style>
